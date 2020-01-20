@@ -3,13 +3,23 @@ import * as api from '../utils/axiosRequests';
 import ArticleCard from '../components/ArticleCard';
 
 class ArticleList extends Component {
-  state = { specifiedTopic: '', articles: [] };
+  state = { articles: [] };
 
   componentDidMount() {
-    api.getAllArticles().then(articles => {
+    console.log(this.props.topic);
+    api.getAllArticles(this.props.topic).then(articles => {
       this.setState({ articles: articles });
-      console.log(this.state);
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.topic !== prevProps.topic) {
+      api.getAllArticles(this.props.topic).then(articles => {
+        this.setState({
+          articles: articles
+        });
+      });
+    }
   }
 
   render() {

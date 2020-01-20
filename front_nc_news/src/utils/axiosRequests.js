@@ -11,7 +11,9 @@ const getTopics = topic => {
 const getAllArticles = specifiedTopic => {
   return axios
     .get('https://roanncnewsserver.herokuapp.com/api/articles', {
-      topic: specifiedTopic
+      params: {
+        topic: specifiedTopic
+      }
     })
     .then(({ data: { articles } }) => {
       return articles;

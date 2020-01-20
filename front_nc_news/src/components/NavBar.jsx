@@ -13,19 +13,18 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <h4>Stories by topic</h4>
         {this.state.topics.map(topic => {
           return (
-            <>
+            <div key={topic.slug}>
               <Link to={topic.slug}>{topic.slug}</Link>
               <h6>{topic.description}</h6>
-            </>
+            </div>
           );
         })}
-      </div>
+      </>
     );
   }
 }
-
 export default NavBar;
