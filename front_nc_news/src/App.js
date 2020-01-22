@@ -4,6 +4,7 @@ import Header from './components/Header';
 import NavBar from './components/NavBar';
 import ArticleList from './components/ArticleList';
 import SingleArticle from './components/SingleArticle';
+import ErrorPage from './components/ErrorPage';
 import { Router } from '@reach/router';
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
             path="/:topic/:article_id"
             user={this.state.username}
           />
+          <ErrorPage default />
         </Router>
       </div>
     );

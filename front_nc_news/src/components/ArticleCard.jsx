@@ -1,19 +1,23 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import Voter from './Voter';
 
-const ArticleCard = ({ title, body, id, topic, mainFeed }) => {
+const ArticleCard = ({ title, id, topic, mainFeed, votes }) => {
   return (
-    <li>
-      <Link to={`/${topic}/${id}`} article_id={id}>
+    <li className="ArticleCard">
+      <Link to={`/${topic}/${id}`} article_id={id} className="ArticleTitle">
         <h4>{title}</h4>
       </Link>
 
-      {mainFeed && (
-        <Link to={`/${topic}`}>
-          <h6>See all {topic} stories</h6>
-        </Link>
-      )}
+      <aside className="ArticleSeeAllVoter">
+        <Voter votes={votes} type="articles" id={id} />
 
+        {mainFeed && (
+          <Link to={`/${topic}`}>
+            <h6>See all {topic} stories</h6>
+          </Link>
+        )}
+      </aside>
       {/* <p>{body}</p> */}
     </li>
   );

@@ -44,3 +44,34 @@
   grid-row-start: 3;
   grid-row-end: 3;
 }
+
+.ArticleCard {
+  display: grid;
+  grid-template-columns: 30% 1fr 1fr;
+  /* grid-template-rows: 50px 100px; */
+}
+
+.Voter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.VoteButton {
+  flex-basis: 10px;
+}
+
+.ArticleTitle {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.ArticleSeeAll {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}

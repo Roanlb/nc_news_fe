@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import * as api from '../utils/axiosRequests';
 import Voter from './Voter';
+import CommentList from './CommentList';
 
 class SingleArticle extends Component {
   state = {
@@ -23,7 +24,10 @@ class SingleArticle extends Component {
       .postComment(commentToPost, user, article_id)
       .then(({ data: { comment } }) => {
         this.setState(currentState => {
-          return { comments: [comment, ...currentState.comments] };
+          return {
+            comments: [comment, ...currentState.comments],
+            commentToPost: ''
+          };
         });
       });
   };
@@ -53,7 +57,11 @@ class SingleArticle extends Component {
     return (
       <div id={this.props.article_id}>
         <h2>{this.state.article.title}</h2>
-        <Voter votes={this.state.article.votes} type="articles" />
+        <Voter
+          votes={this.state.article.votes}
+          type="articles"
+          id={this.props.article_id}
+        />
         <Link to={`/${this.state.article.topic}`}>
           <h6>See all {this.state.article.topic} stories</h6>
         </Link>
@@ -64,27 +72,20 @@ class SingleArticle extends Component {
           <textarea
             name="commentPost"
             id="commentPost"
-            cols="30"
+            cols="60"
             rows="10"
             onChange={this.handleChange}
+            value={this.state.commentToPost}
           ></textarea>
           <input type="submit" />
         </form>
-        <ul>
-          {this.state.comments.map(comment => {
-            return (
-              <li key={comment.comment_id} id={comment.comment_id}>
-                <h5>{comment.author}</h5>
-                <p>{comment.body}</p>
-                <h5>Votes: {comment.votes}</h5>
-                <h6>Created at: {comment.created_at}</h6>
-                {this.props.user === comment.author && (
-                  <button onClick={this.handleDelete}>Delete</button>
-                )}
-              </li>
-            );
-          })}
-        </ul>
+        {this.state.comments && (
+          <CommentList
+            comments={this.state.comments}
+            handleDelete={this.handleDelete}
+            user={this.user}
+          />
+        )}
       </div>
     );
   }

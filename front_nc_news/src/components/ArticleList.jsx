@@ -6,14 +6,14 @@ class ArticleList extends Component {
   state = { articles: [] };
 
   componentDidMount() {
-    api.getAllArticles(this.props.topic).then(articles => {
+    api.getSortedArticles(this.props.topic).then(articles => {
       this.setState({ articles: articles });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.topic !== prevProps.topic) {
-      api.getAllArticles(this.props.topic).then(articles => {
+      api.getSortedArticles(this.props.topic).then(articles => {
         this.setState({
           articles: articles
         });
@@ -46,13 +46,12 @@ class ArticleList extends Component {
         </aside>
         <ul>
           {this.state.articles.map(article => {
-            console.log(article.comment_count);
-            console.log(article.created_at);
+            console.log(article.votes);
             return (
               <ArticleCard
                 key={article.article_id}
                 title={article.title}
-                body={article.body}
+                votes={article.votes}
                 topic={article.topic}
                 id={article.article_id}
                 mainFeed={this.props.mainFeed}

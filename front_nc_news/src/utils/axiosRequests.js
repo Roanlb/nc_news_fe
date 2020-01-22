@@ -8,18 +8,6 @@ const getTopics = topic => {
     });
 };
 
-const getAllArticles = specifiedTopic => {
-  return axios
-    .get('https://roanncnewsserver.herokuapp.com/api/articles', {
-      params: {
-        topic: specifiedTopic
-      }
-    })
-    .then(({ data: { articles } }) => {
-      return articles;
-    });
-};
-
 const getSingleArticle = id => {
   return axios
     .get(`https://roanncnewsserver.herokuapp.com/api/articles/${id}`)
@@ -61,18 +49,16 @@ const deleteComment = id => {
 
 const vertasilePatch = (increment, id, type) => {
   console.log(increment, id, type);
-  return axios
-    .patch(`https://roanncnewsserver.herokuapp.com/api/${type}/${id}`, {
+  return axios.patch(
+    `https://roanncnewsserver.herokuapp.com/api/${type}/${id}`,
+    {
       inc_votes: increment
-    })
-    .then(response => {
-      console.log(response.data.article.votes);
-    });
+    }
+  );
 };
 
 module.exports = {
   getTopics,
-  getAllArticles,
   getSingleArticle,
   getArticleComments,
   getSortedArticles,
