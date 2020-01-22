@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import * as api from '../utils/axiosRequests';
+import Voter from './Voter';
 
 class SingleArticle extends Component {
   state = {
     article: {},
     comments: [],
-    commentToPost: '',
-    votes: NaN
+    commentToPost: ''
   };
 
   handleChange = event => {
@@ -49,29 +49,11 @@ class SingleArticle extends Component {
     });
   }
 
-  handleVote = event => {
-    let increment = +event.target.id;
-    let id = event.target.parentElement.id;
-    api.patchArticle(increment, id).then(() => {
-      this.setState({ votes: increment });
-    });
-  };
-
   render() {
     return (
       <div id={this.props.article_id}>
         <h2>{this.state.article.title}</h2>
-        <button onClick={this.handleVote} id="1">
-          Upvote
-        </button>
-        <p>
-          {this.state.votes
-            ? this.state.article.votes + this.state.votes
-            : this.state.article.votes}
-        </p>
-        <button onClick={this.handleVote} id="-1">
-          Downvote
-        </button>
+        <Voter votes={this.state.article.votes} type="articles" />
         <Link to={`/${this.state.article.topic}`}>
           <h6>See all {this.state.article.topic} stories</h6>
         </Link>

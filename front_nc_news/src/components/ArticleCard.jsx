@@ -14,7 +14,7 @@ const ArticleCard = ({ title, body, id, topic, mainFeed }) => {
         </Link>
       )}
 
-      <p>{body}</p>
+      {/* <p>{body}</p> */}
     </li>
   );
 };

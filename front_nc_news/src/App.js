@@ -14,11 +14,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header user={this.state.username} />
+        <Header user={this.state.username} className="Header" />
         <NavBar />
-        <Router>
-          <ArticleList path="/" mainFeed={true} />
-          <ArticleList path="/:topic" mainFeed={false} />
+        <Router className="ArticleView">
+          <ArticleList path="/" mainFeed={true} className="ArticleList" />
+          <ArticleList
+            path="/:topic"
+            mainFeed={false}
+            className="ArticleList"
+          />
           <SingleArticle
             path="/:topic/:article_id"
             user={this.state.username}

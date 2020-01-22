@@ -59,18 +59,15 @@ const deleteComment = id => {
   );
 };
 
-const patchComment = (increment, id) => {
-  return axios.patch(
-    `https://roanncnewsserver.herokuapp.com/api/comment/${id}`,
-    { inc_votes: increment }
-  );
-};
-
-const patchArticle = (increment, id) => {
-  return axios.patch(
-    `https://roanncnewsserver.herokuapp.com/api/articles/${id}`,
-    { inc_votes: increment }
-  );
+const vertasilePatch = (increment, id, type) => {
+  console.log(increment, id, type);
+  return axios
+    .patch(`https://roanncnewsserver.herokuapp.com/api/${type}/${id}`, {
+      inc_votes: increment
+    })
+    .then(response => {
+      console.log(response.data.article.votes);
+    });
 };
 
 module.exports = {
@@ -81,6 +78,5 @@ module.exports = {
   getSortedArticles,
   postComment,
   deleteComment,
-  patchComment,
-  patchArticle
+  vertasilePatch
 };
