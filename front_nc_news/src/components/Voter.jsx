@@ -23,12 +23,12 @@ class Voter extends Component {
   render() {
     return (
       <div className="Voter">
-        <h5>Votes: </h5>
+        <h5 className="VoterText">Votes: </h5>
 
         <button className="VoteButton" onClick={this.handleVote} id="1">
           Upvote
         </button>
-        <p>
+        <p className="VoterText">
           {this.state.optimisticVotes
             ? this.props.votes + this.state.optimisticVotes
             : this.props.votes}

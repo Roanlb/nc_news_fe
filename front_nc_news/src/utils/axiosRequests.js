@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const getTopics = topic => {
+const getTopics = () => {
   return axios
     .get('https://roanncnewsserver.herokuapp.com/api/topics')
     .then(({ data: { topics } }) => {

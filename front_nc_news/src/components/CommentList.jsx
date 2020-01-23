@@ -1,23 +1,30 @@
 import React from 'react';
 import Voter from './Voter';
 
-const CommentList = ({ comments }, handleDelete, user) => {
-  console.log(comments);
+const CommentList = ({ comments, handleDelete, user }) => {
+  console.log(user, 'user in commentList');
   return (
-    <ul>
+    <ul className="CommentList">
       {comments.map(comment => {
+        console.log(comment.author, user);
         return (
-          <li key={comment.comment_id} id={comment.comment_id}>
-            <h5>{comment.author}</h5>
-            <p>{comment.body}</p>
+          <li
+            key={comment.comment_id}
+            id={comment.comment_id}
+            className="OneComment"
+          >
+            <h5 className="CommentText">{comment.author}</h5>
+            <p className="CommentText">{comment.body}</p>
             <Voter
               votes={comment.votes}
               type="comments"
               id={comment.comment_id}
             />
-            <h6>Created at: {comment.created_at}</h6>
+            <h6 className="CommentText">Created at: {comment.created_at}</h6>
             {user === comment.author && (
-              <button onClick={handleDelete}>Delete</button>
+              <button className="DeleteButton" onClick={handleDelete}>
+                Delete
+              </button>
             )}
           </li>
         );

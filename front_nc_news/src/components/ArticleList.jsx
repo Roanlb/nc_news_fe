@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
 import * as api from '../utils/axiosRequests';
 import ArticleCard from '../components/ArticleCard';
+import ErrorPage from './ErrorPage';
 
 class ArticleList extends Component {
-  state = { articles: [] };
+  state = { articles: [], isLoading: true, err: '' };
 
   componentDidMount() {
-    api.getSortedArticles(this.props.topic).then(articles => {
-      this.setState({ articles: articles });
-    });
+    api
+      .getSortedArticles(this.props.topic)
+      .then(articles => {
+        this.setState({ articles: articles, isLoading: false });
+      })
+      .catch(({ response }) => {
+        console.log(response);
+        this.setState({ err: response.data.msg, isLoading: false });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.topic !== prevProps.topic) {
-      api.getSortedArticles(this.props.topic).then(articles => {
-        this.setState({
-          articles: articles
+      api
+        .getSortedArticles(this.props.topic)
+        .then(articles => {
+          this.setState({
+            articles: articles
+          });
+        })
+        .catch(({ response }) => {
+          this.setState({ err: response.data.msg, isLoading: false });
         });
-      });
     }
   }
 
@@ -25,7 +37,9 @@ class ArticleList extends Component {
     console.log(value, 'value');
     console.log(this.props.topic, 'this proprs topic');
     api.getSortedArticles(this.props.topic, value).then(articles => {
-      this.setState({ articles: articles });
+      this.setState({ articles: articles }).catch(({ response }) => {
+        this.setState({ err: response.data.msg, isLoading: false });
+      });
     });
   };
 
@@ -44,7 +58,9 @@ class ArticleList extends Component {
             <option value="votes">Votes</option>
           </select>
         </aside>
-        <ul>
+
+        <ul className="ArticleList">
+          {this.state.isLoading && !this.state.err && <h4>Loading...</h4>}
           {this.state.articles.map(article => {
             console.log(article.votes);
             return (
@@ -55,10 +71,13 @@ class ArticleList extends Component {
                 topic={article.topic}
                 id={article.article_id}
                 mainFeed={this.props.mainFeed}
+                comment_count={article.comment_count}
               />
             );
           })}
         </ul>
+
+        {this.state.err && <ErrorPage err={this.state.err} />}
       </div>
     );
   }

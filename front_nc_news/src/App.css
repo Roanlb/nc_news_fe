@@ -2,7 +2,7 @@
   text-align: center;
   display: grid;
   grid-template-columns: 10% 80% 10%;
-  grid-template-rows: 120px 150px 1fr;
+  grid-template-rows: 100px 150px 1fr;
 }
 
 /* navbar things */
@@ -21,7 +21,7 @@
   text-align: center;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   align-content: center;
 }
 
@@ -46,9 +46,14 @@
 }
 
 .ArticleCard {
+  text-align: left;
   display: grid;
-  grid-template-columns: 30% 1fr 1fr;
-  /* grid-template-rows: 50px 100px; */
+  grid-template-columns: auto;
+  grid-template-rows: 70px 30px 50px;
+  border-style: solid;
+  margin: 10px 0px 10px 0px;
+  border-color: crimson;
+  padding: 2px;
 }
 
 .Voter {
@@ -58,20 +63,66 @@
   justify-content: flex-start;
 }
 
+.ArticleVoter {
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.ArticleSeeAll {
+  grid-row-start: 3;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
 .VoteButton {
   flex-basis: 10px;
 }
 
-.ArticleTitle {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+.ArticleList {
+  margin: 0 0 0 0;
+  padding: 0;
 }
 
-.ArticleSeeAll {
+.ArticleTitle {
+  text-align: left;
+  grid-row-start: 1;
+  grid-row-end: 2;
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 2;
+}
+
+.CommentInput {
+  width: 100%;
+  height: 100px;
+}
+
+.Link {
+  color: red;
+}
+
+.OneComment {
+  grid-template-rows: auto, auto, auto;
+  padding: 15px;
+}
+
+.CommentList {
+  list-style: none;
+  padding: 5px;
+}
+
+.DeleteButton {
+  margin: 5px;
+}
+
+.VoterText {
+  margin: 0;
+  padding: 5px;
+}
+
+.CommentText {
+  margin: 0;
+  padding: 5px;
 }
