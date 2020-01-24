@@ -48,7 +48,6 @@ const deleteComment = id => {
 };
 
 const vertasilePatch = (increment, id, type) => {
-  console.log(increment, id, type);
   return axios.patch(
     `https://roanncnewsserver.herokuapp.com/api/${type}/${id}`,
     {

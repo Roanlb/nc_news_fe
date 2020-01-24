@@ -29,6 +29,8 @@
   text-align: center;
 }
 
+/* article things */
+
 .Header {
   text-align: left;
   grid-column-start: 2;
@@ -56,12 +58,26 @@
   padding: 2px;
 }
 
+/* Voter stuff */
+
 .Voter {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  margin: 2px 2px;
 }
+
+.VoteButton {
+  flex-basis: 10px;
+}
+
+.VoterText {
+  margin: 0;
+  padding: 5px;
+}
+
+/* article stuff */
 
 .ArticleVoter {
   grid-row-start: 2;
@@ -77,10 +93,6 @@
   grid-column-end: 2;
 }
 
-.VoteButton {
-  flex-basis: 10px;
-}
-
 .ArticleList {
   margin: 0 0 0 0;
   padding: 0;
@@ -94,13 +106,11 @@
   grid-column-end: 2;
 }
 
+/* comment stuff */
+
 .CommentInput {
   width: 100%;
   height: 100px;
-}
-
-.Link {
-  color: red;
 }
 
 .OneComment {
@@ -115,11 +125,6 @@
 
 .DeleteButton {
   margin: 5px;
-}
-
-.VoterText {
-  margin: 0;
-  padding: 5px;
 }
 
 .CommentText {

@@ -4,6 +4,7 @@ import * as api from '../utils/axiosRequests';
 import Voter from './Voter';
 import CommentList from './CommentList';
 import ErrorPage from './ErrorPage';
+import CommentSubmitForm from './CommentSubmitForm';
 
 class SingleArticle extends Component {
   state = {
@@ -14,8 +15,12 @@ class SingleArticle extends Component {
     commentWarning: ''
   };
 
-  handleChange = event => {
-    this.setState({ commentToPost: event.target.value });
+  handleChange = ({
+    event: {
+      target: { value }
+    }
+  }) => {
+    this.setState({ commentToPost: value });
   };
 
   handlePostComment = event => {
@@ -40,23 +45,41 @@ class SingleArticle extends Component {
             };
           });
         })
-        .catch(({ response }) => {
-          this.setState({ err: response.data.msg, isLoading: false });
-        });
+        .catch(
+          ({
+            response: {
+              data: { msg }
+            }
+          }) => {
+            this.setState({ err: msg, isLoading: false });
+          }
+        );
     }
   };
 
-  handleDelete = event => {
-    let comment_id = event.target.parentElement.id;
+  handleDelete = ({
+    event: {
+      target: {
+        parentElement: { id }
+      }
+    }
+  }) => {
+    let comment_id = id;
     api.deleteComment(comment_id).then(() => {
       api
         .getArticleComments(this.props.article_id)
         .then(comments => {
           this.setState({ comments: comments });
         })
-        .catch(({ response }) => {
-          this.setState({ err: response.data.msg, isLoading: false });
-        });
+        .catch(
+          ({
+            response: {
+              data: { msg }
+            }
+          }) => {
+            this.setState({ err: msg, isLoading: false });
+          }
+        );
     });
   };
 
@@ -71,13 +94,18 @@ class SingleArticle extends Component {
           comments: resolutions[1]
         });
       })
-      .catch(({ response }) => {
-        this.setState({ err: response.data.msg, isLoading: false });
-      });
+      .catch(
+        ({
+          response: {
+            data: { msg }
+          }
+        }) => {
+          this.setState({ err: msg, isLoading: false });
+        }
+      );
   }
 
   render() {
-    console.log(this.props.user, 'this props user');
     return (
       <div id={this.props.article_id}>
         {this.state.err ? (
@@ -85,28 +113,26 @@ class SingleArticle extends Component {
         ) : (
           <>
             <h2>{this.state.article.title}</h2>
+
             <Voter
               votes={this.state.article.votes}
               type="articles"
               id={this.props.article_id}
             />
+
             <Link to={`/${this.state.article.topic}`}>
               <h6>See all {this.state.article.topic} stories</h6>
             </Link>
+
             <p>{this.state.article.body}</p>
+
             <h4>Comments</h4>
-            <form onSubmit={this.handlePostComment}>
-              <h3>Post a comment: </h3>
-              <textarea
-                className="CommentInput"
-                name="commentPost"
-                id="commentPost"
-                onChange={this.handleChange}
-                value={this.state.commentToPost}
-                placeholder={this.state.commentWarning}
-              ></textarea>
-              <input type="submit" />
-            </form>
+            <CommentSubmitForm
+              handlePostComment={this.handlePostComment}
+              handleChange={this.handleChange}
+              commentToPost={this.state.commentToPost}
+              commentWarning={this.state.commentWarning}
+            />
             {this.state.comments && (
               <CommentList
                 comments={this.state.comments}

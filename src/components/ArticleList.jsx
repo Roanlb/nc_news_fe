@@ -2,67 +2,50 @@ import React, { Component } from 'react';
 import * as api from '../utils/axiosRequests';
 import ArticleCard from '../components/ArticleCard';
 import ErrorPage from './ErrorPage';
+import ArticleSelector from './ArticleSelector';
 
 class ArticleList extends Component {
   state = { articles: [], isLoading: true, err: '' };
 
-  componentDidMount() {
+  handleChange(topic, value) {
     api
-      .getSortedArticles(this.props.topic)
+      .getSortedArticles(topic, value)
       .then(articles => {
         this.setState({ articles: articles, isLoading: false });
       })
-      .catch(({ response }) => {
-        console.log(response);
-        this.setState({ err: response.data.msg, isLoading: false });
-      });
+      .catch(
+        ({
+          response: {
+            data: { msg }
+          }
+        }) => {
+          this.setState({ err: msg, isLoading: false });
+        }
+      );
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidMount() {
+    this.handleChange(this.props.topic);
+  }
+
+  componentDidUpdate(prevProps) {
     if (this.props.topic !== prevProps.topic) {
-      api
-        .getSortedArticles(this.props.topic)
-        .then(articles => {
-          this.setState({
-            articles: articles
-          });
-        })
-        .catch(({ response }) => {
-          this.setState({ err: response.data.msg, isLoading: false });
-        });
+      this.handleChange(this.props.topic);
     }
   }
 
   handleSelectChange = ({ target: { value } }) => {
-    console.log(value, 'value');
-    console.log(this.props.topic, 'this proprs topic');
-    api.getSortedArticles(this.props.topic, value).then(articles => {
-      this.setState({ articles: articles }).catch(({ response }) => {
-        this.setState({ err: response.data.msg, isLoading: false });
-      });
-    });
+    this.handleChange(this.props.topic, value);
   };
 
   render() {
     return (
       <div>
-        <aside>
-          <h4>Sort by:</h4>
-          <select
-            name="articleSelector"
-            id="articleSelector"
-            onChange={this.handleSelectChange}
-          >
-            <option value="created_at">Date created</option>
-            <option value="comment_count">Comment count</option>
-            <option value="votes">Votes</option>
-          </select>
-        </aside>
+        <ArticleSelector handleSelectChange={this.handleSelectChange} />
 
         <ul className="ArticleList">
           {this.state.isLoading && !this.state.err && <h4>Loading...</h4>}
           {this.state.articles.map(article => {
-            console.log(article.votes);
             return (
               <ArticleCard
                 key={article.article_id}

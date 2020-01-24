@@ -2,11 +2,9 @@ import React from 'react';
 import Voter from './Voter';
 
 const CommentList = ({ comments, handleDelete, user }) => {
-  console.log(user, 'user in commentList');
   return (
     <ul className="CommentList">
       {comments.map(comment => {
-        console.log(comment.author, user);
         return (
           <li
             key={comment.comment_id}

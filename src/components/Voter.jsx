@@ -6,15 +6,15 @@ class Voter extends Component {
     optimisticVotes: 0
   };
 
-  handleVote = event => {
-    let increment = +event.target.id;
-    let id = this.props.id;
+  handleVote = ({ target: { id } }) => {
+    let increment = +id;
+    let typeId = this.props.id;
     let type = this.props.type;
     if (this.state.optimisticVotes !== 0) {
-      api.vertasilePatch(-this.state.optimisticVotes, id, type);
+      api.vertasilePatch(-this.state.optimisticVotes, typeId, type);
       this.setState({ optimisticVotes: 0 });
     } else {
-      api.vertasilePatch(increment, id, type).then(() => {
+      api.vertasilePatch(increment, typeId, type).then(() => {
         this.setState({ optimisticVotes: increment });
       });
     }

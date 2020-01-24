@@ -11,24 +11,22 @@ class NavBar extends Component {
       .then(topics => {
         this.setState({ topics: topics, isLoading: false });
       })
-      .catch(({ response }) => {
-        this.setState({ err: response.data.msg, isLoading: false });
-      });
+      .catch(
+        ({
+          response: {
+            data: { msg }
+          }
+        }) => {
+          this.setState({ err: msg, isLoading: false });
+        }
+      );
   }
 
   render() {
     return (
       <div className="NavBar">
         <h4 className="NavBarTitle"> Stories by topic</h4>
-        {this.state.isLoading && (
-          <>
-            <h4>Loading...</h4>
-            <img
-              src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
-              alt="a triforce logo with the tiles rotating"
-            />
-          </>
-        )}
+        {this.state.isLoading && <h4>Loading...</h4>}
         {this.state.err ? (
           <h1>Oops! Couldn't find today's topics</h1>
         ) : (
