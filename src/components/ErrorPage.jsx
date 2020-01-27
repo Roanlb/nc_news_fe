@@ -8,6 +8,7 @@ const ErrorPage = err => {
         src="https://www.ionos.com/digitalguide/fileadmin/DigitalGuide/Teaser/404-not-found-t.jpg"
         alt="A giant baby who has just eaten the page"
         width="100%"
+        className="ErrorImage"
       />
     </section>
   );

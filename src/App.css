@@ -1,43 +1,169 @@
-.App {
-  text-align: center;
-  display: grid;
-  grid-template-columns: 10% 80% 10%;
-  grid-template-rows: 100px 150px 1fr;
+.rotateimg180 {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* desktop app */
+@media only screen and (min-width: 600px) {
+  .App {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 60px 60px 1fr;
+    background-color: whitesmoke;
+  }
+}
+
+/* mobile app */
+@media only screen and (max-width: 600px) {
+  .App {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: auto auto 1fr;
+    background-color: whitesmoke;
+  }
+}
+
+button {
+  background-color: #cdcdcd;
+  /* text-decoration: none; */
+  border: none;
+  color: #202829;
+}
+
+.SubmitButton {
+  background-color: #cdcdcd;
+  border: none;
+  color: #202829;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+a:active {
+  text-decoration: underline;
+  color: black;
 }
 
 /* navbar things */
-
-.NavBar {
-  text-align: center;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  border-style: outset;
+/* desktop */
+@media only screen and (min-width: 600px) {
+  .NavBar {
+    text-align: left;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    background-color: #202829;
+    align-items: center;
+  }
+}
+/* mobile */
+@media only screen and (max-width: 600px) {
+  .NavBar {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    color: #cdcdcd;
+    background-color: #202829;
+    display: flex;
+  }
 }
 
 .NavBarList {
+  grid-column-start: 2;
   display: flex;
   text-align: center;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: flex-start;
   align-content: center;
+  color: #cdcdcd;
+}
+
+.NavButton a {
+  color: #cdcdcd;
 }
 
 .NavBarTitle {
-  text-align: center;
+  grid-column-start: 1;
+  text-align: left;
+  margin: 0 0 0 10px;
+  padding: 0px;
+  color: crimson;
+}
+
+/* Header things */
+
+/* desktop */
+@media only screen and (min-width: 600px) {
+  .Header {
+    text-align: left;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    background-color: #202829;
+    align-items: center;
+  }
+}
+
+/* mobile */
+@media only screen and (max-width: 600px) {
+  .Header {
+    text-align: left;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #202829;
+    align-items: center;
+  }
+}
+
+.HeaderTitle {
+  text-align: left;
+  grid-column-start: 1;
+  color: crimson;
+  margin: 0 0 0 10px;
+}
+
+.HeaderHeadline {
+  margin: 0 0;
+  color: crimson;
+}
+
+.HeaderWelcome {
+  grid-column-start: 2;
+  color: #cdcdcd;
+  font-size: small;
 }
 
 /* article things */
-
-.Header {
-  text-align: left;
-  grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
 
 .ArticleView {
   text-align: left;
@@ -51,11 +177,71 @@
   text-align: left;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 70px 30px 50px;
-  border-style: solid;
+  grid-template-rows: auto 30px auto;
   margin: 10px 0px 10px 0px;
-  border-color: crimson;
   padding: 2px;
+  border-radius: 5px;
+}
+
+.ArticleCard a {
+  color: black;
+}
+
+.ArticleVoter {
+  grid-row-start: 2;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.ArticleSeeAll {
+  grid-row-start: 3;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+h6 {
+  margin: 10px 10px;
+}
+
+.ArticleCard h6 {
+  margin: 5px 5px;
+}
+
+.ArticleList {
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .ArticleListTitle {
+    margin: 42.44px 0px 42.44px 50.44px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .ArticleListTitle {
+    margin: 21.44px 21.44px 21.44px 21.44px;
+  }
+}
+
+.ArticleTitle {
+  text-align: left;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.ArticleTitle h4 {
+  margin: 5px 0;
+}
+
+.ArticleSelector {
+  background-color: #cdcdcd;
+  border: none;
+  color: #202829;
 }
 
 /* Voter stuff */
@@ -75,35 +261,6 @@
 .VoterText {
   margin: 0;
   padding: 5px;
-}
-
-/* article stuff */
-
-.ArticleVoter {
-  grid-row-start: 2;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-
-.ArticleSeeAll {
-  grid-row-start: 3;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-
-.ArticleList {
-  margin: 0 0 0 0;
-  padding: 0;
-}
-
-.ArticleTitle {
-  text-align: left;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 1;
-  grid-column-end: 2;
 }
 
 /* comment stuff */
@@ -130,4 +287,8 @@
 .CommentText {
   margin: 0;
   padding: 5px;
+}
+
+.ErrorImage {
+  margin: 0 0 75px 0;
 }

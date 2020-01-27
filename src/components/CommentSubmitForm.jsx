@@ -10,6 +10,7 @@ const CommentSubmitForm = ({
     <form onSubmit={handlePostComment}>
       <h3>Post a comment: </h3>
       <textarea
+        required
         className="CommentInput"
         name="commentPost"
         id="commentPost"
@@ -17,7 +18,7 @@ const CommentSubmitForm = ({
         value={commentToPost}
         placeholder={commentWarning}
       ></textarea>
-      <input type="submit" />
+      <input className="SubmitButton" type="submit" />
     </form>
   );
 };

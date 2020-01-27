@@ -15,11 +15,7 @@ class SingleArticle extends Component {
     commentWarning: ''
   };
 
-  handleChange = ({
-    event: {
-      target: { value }
-    }
-  }) => {
+  handleChange = ({ target: { value } }) => {
     this.setState({ commentToPost: value });
   };
 
@@ -58,10 +54,8 @@ class SingleArticle extends Component {
   };
 
   handleDelete = ({
-    event: {
-      target: {
-        parentElement: { id }
-      }
+    target: {
+      parentElement: { id }
     }
   }) => {
     let comment_id = id;

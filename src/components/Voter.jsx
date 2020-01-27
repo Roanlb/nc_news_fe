@@ -24,18 +24,32 @@ class Voter extends Component {
     return (
       <div className="Voter">
         <h5 className="VoterText">Votes: </h5>
-
-        <button className="VoteButton" onClick={this.handleVote} id="1">
-          Upvote
-        </button>
+        <input
+          type="image"
+          id="1"
+          onClick={this.handleVote}
+          src="https://static.thenounproject.com/png/390383-200.png"
+          alt="An upvote button with an arrow pointing up"
+          height="12px"
+          width="12px"
+        />
         <p className="VoterText">
           {this.state.optimisticVotes
             ? this.props.votes + this.state.optimisticVotes
             : this.props.votes}
         </p>
-        <button className="VoteButton" onClick={this.handleVote} id="-1">
-          Downvote
-        </button>
+        <label>
+          <input
+            type="image"
+            id="-1"
+            onClick={this.handleVote}
+            src="https://static.thenounproject.com/png/390383-200.png"
+            alt="An upvote button with an arrow pointing up"
+            height="12px"
+            width="12px"
+            className=" VoteButton rotateimg180"
+          />
+        </label>
       </div>
     );
   }

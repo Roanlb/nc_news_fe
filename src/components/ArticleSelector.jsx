@@ -8,6 +8,7 @@ const ArticleSelector = ({ handleSelectChange }) => {
         name="articleSelector"
         id="articleSelector"
         onChange={handleSelectChange}
+        className="ArticleSelector"
       >
         <option value="created_at">Date created</option>
         <option value="comment_count">Comment count</option>

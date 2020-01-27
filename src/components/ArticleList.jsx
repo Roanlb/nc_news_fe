@@ -41,6 +41,11 @@ class ArticleList extends Component {
   render() {
     return (
       <div>
+        {!this.state.err && (
+          <h1 className="ArticleListTitle">
+            {this.props.topic ? '/' + this.props.topic : 'All Articles'}
+          </h1>
+        )}
         <ArticleSelector handleSelectChange={this.handleSelectChange} />
 
         <ul className="ArticleList">

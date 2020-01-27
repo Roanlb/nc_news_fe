@@ -17,7 +17,7 @@ class App extends Component {
       <div className="App">
         <Header user={this.state.username} />
         <NavBar />
-        <Router className="ArticleView">
+        <Router primary={false} className="ArticleView">
           <ArticleList path="/" mainFeed={true} />
           <ArticleList path="/:topic" mainFeed={false} />
           <SingleArticle

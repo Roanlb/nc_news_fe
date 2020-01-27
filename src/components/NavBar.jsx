@@ -30,18 +30,16 @@ class NavBar extends Component {
         {this.state.err ? (
           <h1>Oops! Couldn't find today's topics</h1>
         ) : (
-          <>
-            <div className="NavBarList">
-              {this.state.topics.map(topic => {
-                return (
-                  <div className="NavButton" key={topic.slug}>
-                    <Link to={topic.slug}>{topic.slug}</Link>
-                    <h6>{topic.description}</h6>
-                  </div>
-                );
-              })}
-            </div>
-          </>
+          <div className="NavBarList">
+            {this.state.topics.map(topic => {
+              return (
+                <div className="NavButton" key={topic.slug}>
+                  <Link to={topic.slug}>{topic.slug}</Link>
+                  <h6>{topic.description}</h6>
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     );
