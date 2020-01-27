@@ -8,7 +8,7 @@ The github repository for this project can be cloned with the terminal command '
 
 ## Deployed version
 
-A hosted version of the front end site can be found online at https://wizardly-khorana-ad28c0.netlify.com/.
+A hosted version of the front end site can be found online at https://roanlb-ncnews.netlify.com/.
 
 ## Built with
 
